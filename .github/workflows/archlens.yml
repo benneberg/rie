@@ -1,0 +1,27 @@
+name: ArchLens RIE 2.0 Governance
+on: [pull_request]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed for drift comparison
+
+      - name: Install RIE CLI
+        run: npm install -g @archlens/rie-cli
+
+      - name: Run Architecture Analysis
+        id: rie
+        run: |
+          # Compare PR head to target branch
+          rie analyze --compare-to ${{ github.base_ref }} --format json > report.json
+        continue-on-error: true # We want to post the comment even if it fails
+
+      - name: Post Architecture Impact Report
+        uses: archlens/github-action@v2
+        with:
+          report-path: './report.json'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-regression: true # This triggers the "Block"
