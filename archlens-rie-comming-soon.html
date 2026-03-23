@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>RIE — Open Specs</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+.label { font-family: 'Space Grotesk', monospace; }
+.section { opacity:0; transform: translateY(40px); transition: all .6s ease; }
+.section.visible { opacity:1; transform: translateY(0); }
+</style>
+
+</head>
+
+<body class="bg-white text-black">
+
+<!-- HEADER -->
+<header class="fixed top-0 w-full bg-white border-b border-black h-16 flex items-center justify-between px-6 z-50">
+  <h1 class="font-black tracking-[0.2em]">RIE</h1>
+  <span class="text-xs label uppercase">Open Specs v2.0</span>
+</header>
+
+<main class="pt-24 px-6 max-w-6xl mx-auto space-y-32">
+
+<!-- HERO -->
+<section class="section">
+  <h2 class="text-[3.5rem] font-black leading-[0.9] tracking-tight mb-6">
+    The GitHub<br/>
+    for Architecture
+  </h2>
+  <p class="text-lg max-w-xl text-gray-600">
+    Turn your codebase into a governed, measurable, and self-healing system.
+  </p>
+</section>
+
+<!-- PILLARS -->
+<section class="section">
+  <h3 class="label text-xs uppercase mb-6">Core Thesis</h3>
+
+  <div class="grid gap-6">
+
+    <div class="border p-6">
+      <span class="label text-xs text-gray-500">01</span>
+      <h4 class="font-black text-xl mt-2">Deterministic Authority</h4>
+      <p class="text-sm text-gray-600 mt-2">
+        CAG replaces interpretation with verifiable architecture truth.
+      </p>
+    </div>
+
+    <div class="border p-6">
+      <span class="label text-xs text-gray-500">02</span>
+      <h4 class="font-black text-xl mt-2">Temporal Governance</h4>
+      <p class="text-sm text-gray-600 mt-2">
+        Architecture evolves as a timeline, not snapshots.
+      </p>
+    </div>
+
+    <div class="border p-6">
+      <span class="label text-xs text-gray-500">03</span>
+      <h4 class="font-black text-xl mt-2">Measurable KPIs</h4>
+      <p class="text-sm text-gray-600 mt-2">
+        AFS makes architecture a board-level metric.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAG -->
+<section class="section">
+  <h3 class="text-3xl font-black mb-6">Canonical Architecture Graph</h3>
+
+  <div class="bg-gray-100 p-6 border text-xs font-mono overflow-x-auto">
+{
+  "module": "core:payment",
+  "stability": 0.82,
+  "coupling": 0.15,
+  "layer": "domain"
+}
+  </div>
+
+  <p class="text-sm text-gray-600 mt-4 max-w-xl">
+    A queryable, diffable, auditable substrate for architecture.
+  </p>
+</section>
+
+<!-- PR BLOCK -->
+<section class="section">
+  <h3 class="text-3xl font-black mb-6">PR-Level Enforcement</h3>
+
+  <div class="border-2 border-black p-6">
+    <h4 class="font-black mb-4">🚨 Blocker</h4>
+
+    <p class="text-sm mb-4">
+      UI importing infrastructure directly.
+    </p>
+
+    <div class="bg-gray-100 p-4 text-xs font-mono">
+import { db } from "infra/db"; // ❌
+    </div>
+  </div>
+</section>
+
+<!-- AFS -->
+<section class="section">
+  <h3 class="text-3xl font-black mb-6">Architecture Fitness Score</h3>
+
+  <div class="border p-8 flex justify-between items-end">
+    <span class="text-7xl font-black" id="afs">0</span>
+    <span class="label text-sm">+4.2%</span>
+  </div>
+</section>
+
+<!-- TIME MACHINE -->
+<section class="section">
+  <h3 class="text-3xl font-black mb-6">Time Machine</h3>
+
+  <div class="space-y-4">
+
+    <div class="border p-4">
+      <span class="label text-xs">ADDED</span>
+      <p class="font-bold">feature:discounts</p>
+    </div>
+
+    <div class="border p-4">
+      <span class="label text-xs">CHANGED</span>
+      <p class="font-bold">core:payment → 0.82 → 0.75</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section">
+  <h3 class="text-3xl font-black mb-6">Execution Roadmap</h3>
+
+  <div class="space-y-4 text-sm">
+
+    <div class="border p-4">
+      <strong>Month 1:</strong> CAG + CLI
+    </div>
+
+    <div class="border p-4">
+      <strong>Month 2:</strong> PR Blocking
+    </div>
+
+    <div class="border p-4">
+      <strong>Month 3:</strong> Dashboard
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- JS -->
+<script>
+
+// reveal on scroll
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+});
+sections.forEach(s => observer.observe(s));
+
+// animate AFS
+let score = 0;
+let target = 88;
+let el = document.getElementById('afs');
+
+let interval = setInterval(()=>{
+  score++;
+  el.textContent = score;
+  if(score >= target) clearInterval(interval);
+}, 20);
+
+</script>
+
+</body>
+</html>
