@@ -1,0 +1,45 @@
+{
+  "name": "archlens-rie",
+  "version": "2.0.0",
+  "description": "Architecture Intelligence Engine - Software Architecture Governance Platform",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:core": "npm run build -w @archlens/core",
+    "build:engine": "npm run build -w @archlens/engine",
+    "build:storage": "npm run build -w @archlens/storage",
+    "build:github-app": "npm run build -w @archlens/github-app",
+    "build:dashboard": "npm run build -w @archlens/dashboard",
+    "dev:dashboard": "npm run dev -w @archlens/dashboard",
+    "start:github-app": "npm run start -w @archlens/github-app",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint . --ext .ts,.tsx",
+    "clean": "npm run clean --workspaces --if-present",
+    "typecheck": "tsc --build --force"
+  },
+  "keywords": [
+    "architecture",
+    "governance",
+    "software-engineering",
+    "static-analysis",
+    "dependency-management",
+    "github-app",
+    "cel",
+    "policy-engine"
+  ],
+  "author": "ArchLens Team",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
